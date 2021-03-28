@@ -12,9 +12,10 @@
         "es6": true
     },
     "plugins": ["prettier"],
-    "extends": ["eslint:recommended", "plugin:prettier/recommended", "prettier", "plugin:json/recommended"],
+    "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:json/recommended"],
     "rules": {
         "no-unused-vars": "warn",
-        "quotes": ["error", "single"]
+        "quotes": ["error", "single"],
+        "prettier/prettier": "warn"
     }
 }
