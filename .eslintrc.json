@@ -1,0 +1,20 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "ecmaFeatures": {
+            "spread": true
+        },
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "plugins": ["prettier"],
+    "extends": ["eslint:recommended", "plugin:prettier/recommended", "prettier", "plugin:json/recommended"],
+    "rules": {
+        "no-unused-vars": "warn",
+        "quotes": ["error", "single"]
+    }
+}
