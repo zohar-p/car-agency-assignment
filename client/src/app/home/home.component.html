@@ -1,23 +1,6 @@
 <h1 class="card text-white bg-secondary my-5 p-4">Our Cars</h1>
 <div class="container">
-<ul class="row justify-content-between">
-  <li
-    *ngFor="let car of cars"
-    class="col-sm-4 col-md-3 mb-3 card"
-  >
-    <a routerLink="/cars/{{car.id}}" class="stretched-link"></a>
-    <div class="card-body">
-      <h2 class="card-title h4">{{ car.brand }} {{ car.model }}</h2>
-      <p class="card-text">
-        type: {{ car.type }}
-      </p>
-      <p class="card-text">
-        year: {{ car.year }}
-      </p>
-      <p class="card-text">
-        price: {{ car.price }}
-      </p>
-    </div>
-  </li>
+<ul class="row justify-content-between" >
+    <app-car-details class="col-sm-4 mb-4" *ngFor="let car of cars" [car]="car"></app-car-details>
 </ul>
 </div>
