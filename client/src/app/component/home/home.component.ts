@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // @ts-ignore
-import mockCars from '../../../../mocks/cars.mock.json'
-import { ICar } from '../car.entity';
+import mockCars from '../../../../../mocks/cars.mock.json'
+import { ICar } from '../../car.entity';
 
 @Component({
   templateUrl: './home.component.html',
