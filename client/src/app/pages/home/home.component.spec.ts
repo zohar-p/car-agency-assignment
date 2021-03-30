@@ -19,16 +19,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render title', () => {
-    // TODO BEFORE PR: Consider removing
-    expect(
-      fixture.nativeElement.querySelector('h1').textContent
-    ).toBe('Our Cars')
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
-
-  it('should fetch cars on init', () => {
-    // TODO BEFORE PR: implement
-  })
-
-  it('should navigate to car details page when a car is clicked')
 });

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ICar } from '../../car.entity';
-import { HttpClient } from '@angular/common/http'
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/cars.service';
+import { ICar } from '../../car.entity';
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  selector: 'app-cars-list',
+  templateUrl: './cars-list.component.html',
+  styleUrls: ['./cars-list.component.sass']
 })
-export class HomeComponent implements OnInit {
+export class CarsListComponent implements OnInit {
   cars: ICar[] = []
   carsSubscription: Subscription
 
