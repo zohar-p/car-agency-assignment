@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarDetailsComponent } from './component/car-details/car-details.component';
+import { CarDetailsComponent } from './pages/car-details/car-details.component';
 import { CarItemComponent } from './component/car-item/car-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
