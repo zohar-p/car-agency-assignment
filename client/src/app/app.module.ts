@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { CarDetailsComponent } from './component/car-details/car-details.component';
 import { CarItemComponent } from './component/car-item/car-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CarItemComponent } from './component/car-item/car-item.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
