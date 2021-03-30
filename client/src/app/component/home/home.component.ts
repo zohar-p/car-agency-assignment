@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.carsSubscription = this._carsService.cars.subscribe({
+    this.carsSubscription = this._carsService.cars$.subscribe({
       next: cars => { this.cars = cars }
     })
-    this._carsService.getCars()
+    this._carsService.fetchCars()
   }
 
 }

@@ -7,16 +7,25 @@ import { ICar } from './car.entity';
   providedIn: 'root'
 })
 export class CarsService {
-  cars = new Subject<ICar[]>()
+  private _cars: ICar[] = []
+  cars$ = new Subject<ICar[]>()
 
   constructor(
     private _httpClient: HttpClient,
 
   ) { }
 
-  getCars() {
+  set cars(cars: ICar[]) {
+    this._cars = cars.slice()
+    this.cars$.next(this._cars.slice())
+  }
+
+  fetchCars() {
     this._httpClient.get<ICar[]>('http://localhost:3000/api/cars')
-    .subscribe(response => this.cars.next(response))
-    
+      .subscribe(response => this.cars = response)
+  }
+
+  getCarById(id: string): ICar | null {
+    return this._cars.find(car => car.id === id) || null
   }
 }

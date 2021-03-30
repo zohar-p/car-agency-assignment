@@ -6,6 +6,7 @@ import { HomeComponent } from './component/home/home.component';
 import { CarDetailsComponent } from './component/car-details/car-details.component';
 import { CarItemComponent } from './component/car-item/car-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     CarDetailsComponent,
     CarItemComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
