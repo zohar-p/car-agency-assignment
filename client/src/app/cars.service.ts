@@ -11,8 +11,7 @@ export class CarsService {
   cars$ = new Subject<ICar[]>()
 
   constructor(
-    private _httpClient: HttpClient,
-
+    private _httpClient: HttpClient
   ) { }
 
   set cars(cars: ICar[]) {

@@ -1,14 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Subject } from 'rxjs';
+import { ICar } from 'src/app/car.entity';
+import { CarsService } from 'src/app/cars.service';
 import { CarsListComponent } from './cars-list.component';
 
-describe('HomeComponent', () => {
+class CarsServiceStub {
+  cars$ = new Subject<ICar[]>()
+
+  getCars(): ICar[] {
+    return []
+  }
+
+  fetchCars() {}
+}
+
+describe('CarsListComponent', () => {
   let component: CarsListComponent;
   let fixture: ComponentFixture<CarsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CarsListComponent ]
+      declarations: [ CarsListComponent ],
+      providers: [
+        { provide: CarsService, useClass: CarsServiceStub }
+      ]
     })
     .compileComponents();
   });
@@ -19,16 +34,6 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render title', () => {
-    // TODO BEFORE PR: Consider removing
-    expect(
-      fixture.nativeElement.querySelector('h1').textContent
-    ).toBe('Our Cars')
-  });
+  it('should fetch cars on init')
 
-  it('should fetch cars on init', () => {
-    // TODO BEFORE PR: implement
-  })
-
-  it('should navigate to car details page when a car is clicked')
 });
