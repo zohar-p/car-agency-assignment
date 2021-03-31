@@ -1,0 +1,1 @@
+export const carMock = { id: '123', type: 'Hatchback', brand: 'Suzuki', model: 'Splash', year: '2014', price: '2000000' }

@@ -19,8 +19,14 @@ export class CarDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._route.params.subscribe(params => {
-      this._id = params.id
+    this.getCar()
+  }
+
+  getCar() {
+    this._route.paramMap.subscribe(params => {
+      const id = params.get('id')
+      if (!id) { this._router.navigate(['/not-found'])}
+      this._id = id!
       const car = this._carsService.getCarById(this._id)
       if (!car) { this._router.navigate(['/not-found'])}
       this.car = car!

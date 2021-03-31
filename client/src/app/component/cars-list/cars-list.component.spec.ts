@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { ICar } from 'src/app/car.entity';
 import { CarsService } from 'src/app/cars.service';
@@ -34,6 +34,11 @@ describe('CarsListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should fetch cars on init')
+  it('should fetch cars on init', waitForAsync(() => {
+    const carsService = fixture.debugElement.injector.get(CarsService)
+    spyOn(carsService, 'fetchCars')
+    component.ngOnInit()
+    expect(carsService.fetchCars).toHaveBeenCalledTimes(1)
+  }))
 
 });

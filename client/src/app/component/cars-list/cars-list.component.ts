@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/cars.service';
 import { ICar } from '../../car.entity';
@@ -8,7 +8,7 @@ import { ICar } from '../../car.entity';
   templateUrl: './cars-list.component.html',
   styleUrls: ['./cars-list.component.sass']
 })
-export class CarsListComponent implements OnInit {
+export class CarsListComponent implements OnInit, OnDestroy {
   cars: ICar[] = []
   carsSubscription: Subscription
 
@@ -21,6 +21,10 @@ export class CarsListComponent implements OnInit {
       next: cars => { this.cars = cars }
     })
     this._carsService.fetchCars()
+  }
+
+  ngOnDestroy() {
+    this.carsSubscription.unsubscribe()
   }
 
 }
