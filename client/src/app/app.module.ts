@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SortByComponent } from './components/sort-by/sort-by.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeComponent } from './pages/home/home.component';
     NotFoundComponent,
     CarsListComponent,
     HomeComponent,
+    SortByComponent,
   ],
   imports: [
     BrowserModule,
