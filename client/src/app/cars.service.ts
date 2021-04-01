@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { ICar } from './car.entity';
 import { Filters } from './types/filters.type';
 
@@ -23,7 +24,9 @@ export class CarsService {
 
   fetchCars(): Observable<ICar[]> {
     const params = this._assembleFetchParams()
-    const observable = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars', { params })
+    const observable = this._httpClient
+      .get<ICar[]>('http://localhost:3000/api/cars', { params })
+      .pipe(share())
     observable.subscribe(fetchedCars => this.addCars(fetchedCars))
     return observable
   }
