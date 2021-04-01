@@ -1,19 +1,6 @@
 Value: {{ form.value | json }}
 <form [formGroup]="form" class="container-fluid mb-5">
   <div class="form-row">
-    <div class="col-auto form-group">
-      <div>Sort By</div>
-    
-      <div class="custom-control custom-radio">
-        <input type="radio" class="custom-control-input" value="price" id="price" name="sortBy" formControlName="sortBy" >
-        <label class="custom-control-label" for="price">Price</label>
-      </div>
-      
-      <div class="custom-control custom-radio">
-        <input type="radio" class="custom-control-input" value="year" id="year" name="sortBy" formControlName="sortBy" >
-        <label class="custom-control-label" for="year">Year</label>
-      </div>
-    </div>
 
     <div class="form-group col-auto">
       <label for="type">Type: </label>

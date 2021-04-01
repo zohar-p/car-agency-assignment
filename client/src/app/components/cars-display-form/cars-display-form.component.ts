@@ -23,7 +23,6 @@ export class CarsDisplayFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      sortBy: 'price', // TODO BEFORE PR: make enum
       type: constants.OPTION_ALL,
       brand: constants.OPTION_ALL,
       model: constants.OPTION_ALL,
@@ -34,9 +33,7 @@ export class CarsDisplayFormComponent implements OnInit, OnDestroy {
       currency: 'ILS',// TODO BEFORE PR: make enum
       dateFormat: ''// TODO BEFORE PR: make enum
     })
-    // TODO BEFORE PR: sort on init
-    this._carsService.sortBy(this.form.get('sortBy')!.value)
-    this.formSubscription = this.form.valueChanges.subscribe(form => this._carsService.sortBy(form.sortBy))
+    
   }
 
   ngOnDestroy() {

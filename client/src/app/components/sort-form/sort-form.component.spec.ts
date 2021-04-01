@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SortByComponent } from './sort-by.component';
+import { SortFormComponent } from './sort-form.component';
 
-describe('SortByComponent', () => {
-  let component: SortByComponent;
-  let fixture: ComponentFixture<SortByComponent>;
+describe('SortFormComponent', () => {
+  let component: SortFormComponent;
+  let fixture: ComponentFixture<SortFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortByComponent ]
+      declarations: [ SortFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SortByComponent);
+    fixture = TestBed.createComponent(SortFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
