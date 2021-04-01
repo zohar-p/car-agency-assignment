@@ -27,4 +27,16 @@ export class CarsService {
   getCarById(id: string): ICar | null {
     return this._cars.find(car => car.id === id) || null
   }
+
+  sortBy(attribute: 'price' | 'year') {
+    const sortedCars = this._cars.sort((a, b) => (
+      a[attribute] === b[attribute] ?
+        0 :
+        a[attribute] > b[attribute] ?
+          1 :
+          -1
+    ))
+    this.cars = sortedCars
+  }
+
 }
