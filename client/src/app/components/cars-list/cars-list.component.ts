@@ -9,22 +9,25 @@ import { ICar } from '../../car.entity';
   styleUrls: ['./cars-list.component.sass']
 })
 export class CarsListComponent implements OnInit, OnDestroy {
+  sortBy: 'price' | 'year' = 'price'
   cars: ICar[] = []
-  carsSubscription: Subscription
+  subscriptions: Subscription[] = []
 
   constructor(
     private _carsService: CarsService    
   ) { }
 
   ngOnInit(): void {
-    this.carsSubscription = this._carsService.cars$.subscribe({
-      next: cars => { this.cars = cars }
-    })
+    const carSubscription = this._carsService.displayedCars$
+      .subscribe(cars => this.cars = cars)
+    const sortBySubscription = this._carsService.sortBy$
+      .subscribe(sortBy => this.sortBy = sortBy)
     this._carsService.fetchCars()
+    this.subscriptions.push(carSubscription, sortBySubscription)
   }
 
   ngOnDestroy() {
-    this.carsSubscription.unsubscribe()
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 }

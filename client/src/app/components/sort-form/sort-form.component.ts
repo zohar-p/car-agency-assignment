@@ -10,7 +10,7 @@ import { CarsService } from 'src/app/cars.service';
 })
 export class SortFormComponent implements OnInit {
   form: FormGroup
-  formSubscription: Subscription
+  subscriptions: Subscription[] = []
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -20,13 +20,17 @@ export class SortFormComponent implements OnInit {
     this.form = this._formBuilder.group({
       sortBy: 'price', // TODO BEFORE PR: make enum
     })
-    // TODO BEFORE PR: sort on init
-    this._carsService.sortBy(this.form.get('sortBy')!.value)
-    this.formSubscription = this.form.valueChanges.subscribe(form => this._carsService.sortBy(form.sortBy))
+    const formSubscription = this.form.valueChanges.subscribe(form => this.onValueChange(form.sortBy))
+    this.subscriptions.push(formSubscription)
+  }
+
+  onValueChange(value: 'price' | 'year') {
+    this._carsService.fetchCars()
+      .subscribe(() => this._carsService.sortBy$.next(value))
   }
 
   ngOnDestroy() {
-    this.formSubscription.unsubscribe()
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 }
