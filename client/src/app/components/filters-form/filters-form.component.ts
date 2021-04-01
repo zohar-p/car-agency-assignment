@@ -39,25 +39,25 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
       minYear: '',
       maxYear: '',
     })
+    // TODO BEFORE PR: filter price on blur
     this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
     this.form.get('model')!.disable()
-
     this.form.valueChanges.subscribe(values => this._onValueChange(values))
   }
 
   private _onBrandChange(value: string) {
     const modelControl = this.form.get('model')!
-    modelControl.setValue('')
+    modelControl.setValue('', { emitEvent: false })
     if (!value) {
-      modelControl.disable()
+      modelControl.disable({ emitEvent: false })
     } else {
-      modelControl.enable()
+      modelControl.enable({ emitEvent: false })
     }
   }
 
   private _onValueChange(values: Filters) {
     this.modelOptions = this.modelsByBrand[values.brand!] || []
-    this._carsService.fetchCars(values)
+    this._carsService.filters$.next(values)
   }
 
   ngOnDestroy() {

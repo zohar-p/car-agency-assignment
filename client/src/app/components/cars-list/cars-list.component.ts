@@ -10,8 +10,6 @@ import { ICar } from '../../car.entity';
   styleUrls: ['./cars-list.component.sass']
 })
 export class CarsListComponent implements OnInit, OnDestroy {
-  // TODO BEFORE PR: Change
-  filters: Filters = {}
   sortBy: 'price' | 'year' = 'price'
   cars: ICar[] = []
   subscriptions: Subscription[] = []
@@ -21,11 +19,10 @@ export class CarsListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    const carSubscription = this._carsService.displayedCars$
+    const carSubscription = this._carsService.cars$
       .subscribe(cars => this.cars = cars)
     const sortBySubscription = this._carsService.sortBy$
       .subscribe(sortBy => this.sortBy = sortBy)
-    this._carsService.fetchCars()
     this.subscriptions.push(carSubscription, sortBySubscription)
   }
 

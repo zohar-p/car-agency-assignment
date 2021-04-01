@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ICar } from './car.entity';
 import { Filters } from './types/filters.type';
 
@@ -8,24 +8,35 @@ import { Filters } from './types/filters.type';
   providedIn: 'root'
 })
 export class CarsService {
-  sortBy$ = new Subject<'price' | 'year'>()
   private _cars: ICar[] = []
-  displayedCars$ = new Subject<ICar[]>()
+  cars$ = new BehaviorSubject<ICar[]>([])
+  sortBy$ = new Subject<'price' | 'year'>()
+  filters$ = new BehaviorSubject<Filters>({})
 
   constructor(
     private _httpClient: HttpClient
-  ) { }
-
-  set cars(cars: ICar[]) {
-    this._cars = cars.slice()
-    this.displayedCars$.next(this._cars)
+  ) {
+    this.filters$.subscribe(() => this.fetchCars())
   }
 
-  fetchCars(filters: Filters = {}): Observable<ICar[]> {
-    const params =  new HttpParams({fromObject: filters as { [key: string]: any }})
+  get carsCount(): number { return this.cars$.getValue().length }
+
+  fetchCars(): Observable<ICar[]> {
+    const params = this._assembleFetchParams()
     const observable = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars', { params })
-    observable.subscribe(response => this.cars = response)
+    observable.subscribe(fetchedCars => this.addCars(fetchedCars))
     return observable
+  }
+
+  addCars(cars: ICar[]) {
+    this.cars$.next([ ...this.cars$.getValue(), ...cars ])
+  }
+
+  private _assembleFetchParams(): HttpParams {
+    const filters = this.filters$.getValue() as { [key: string]: any }
+    const offset = this.carsCount.toString()
+    const params =  new HttpParams({ fromObject: { ...filters, offset } })
+    return params
   }
 
   getCarById(id: string): ICar | null {
