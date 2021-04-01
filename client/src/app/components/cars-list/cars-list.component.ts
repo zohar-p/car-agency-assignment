@@ -9,6 +9,8 @@ import { ICar } from '../../car.entity';
   styleUrls: ['./cars-list.component.sass']
 })
 export class CarsListComponent implements OnInit, OnDestroy {
+  // TODO BEFORE PR: Change
+  filters = { brand: 'Suzuki' }
   sortBy: 'price' | 'year' = 'price'
   cars: ICar[] = []
   subscriptions: Subscription[] = []

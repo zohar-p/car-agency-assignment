@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICar } from '../car.entity';
+import { ICar } from '../../car.entity';
 
 @Pipe({
   name: 'sort'
