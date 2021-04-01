@@ -9,6 +9,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SortByComponent } from './components/sort-by/sort-by.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CarsDisplayFormComponent } from './components/cars-display-form/cars-display-form.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import { SortByComponent } from './components/sort-by/sort-by.component';
     CarsListComponent,
     HomeComponent,
     SortByComponent,
+    CarsDisplayFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
