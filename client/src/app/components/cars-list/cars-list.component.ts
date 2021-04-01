@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/cars.service';
+import { Filters } from 'src/app/types/filters.type';
 import { ICar } from '../../car.entity';
 
 @Component({
@@ -10,7 +11,7 @@ import { ICar } from '../../car.entity';
 })
 export class CarsListComponent implements OnInit, OnDestroy {
   // TODO BEFORE PR: Change
-  filters = { brand: 'Suzuki' }
+  filters: Filters = {}
   sortBy: 'price' | 'year' = 'price'
   cars: ICar[] = []
   subscriptions: Subscription[] = []

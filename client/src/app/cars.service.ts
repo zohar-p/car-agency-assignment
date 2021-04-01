@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ICar } from './car.entity';
+import { Filters } from './types/filters.type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +18,10 @@ export class CarsService {
 
   set cars(cars: ICar[]) {
     this._cars = cars.slice()
-    this.displayedCars$.next(this.getCarsForDisplay())
+    this.displayedCars$.next(this._cars)
   }
 
-  getCarsForDisplay(): ICar[] {
-    let result = this._cars.slice()
-    // filter 
-    return result
-  }
-
-  fetchCars(): Observable<ICar[]> {
+  fetchCars(values?: Filters): Observable<ICar[]> {
     const observable = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars')
     observable.subscribe(response => this.cars = response)
     return observable
