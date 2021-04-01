@@ -47,8 +47,8 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
 
   private _onBrandChange(value: string) {
     const modelControl = this.form.get('model')!
+    modelControl.setValue('')
     if (!value) {
-      modelControl.setValue('')
       modelControl.disable()
     } else {
       modelControl.enable()

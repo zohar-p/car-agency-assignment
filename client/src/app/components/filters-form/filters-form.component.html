@@ -2,7 +2,7 @@ Value: {{ form.value | json }}
 <form [formGroup]="form" class="container-fluid mb-5">
   <div class="form-row">
 
-    <div class="form-group col-auto">
+    <div class="form-group small-control col-auto">
       <label for="type">Type: </label>
       <select id="type" class="custom-select" formControlName="type">
         <option value="">All</option>
@@ -10,7 +10,7 @@ Value: {{ form.value | json }}
       </select>
     </div>
 
-    <div class="form-group col-auto">
+    <div class="form-group small-control col-auto">
       <label for="brand">Brand: </label>
       <select id="brand" class="custom-select" formControlName="brand">
         <option value="">All</option>
@@ -18,7 +18,7 @@ Value: {{ form.value | json }}
       </select>
     </div>
 
-    <div class="form-group col-auto">
+    <div class="form-group small-control col-auto">
       <label for="model">Model: </label>
       <select id="model" class="custom-select" formControlName="model">
         <option value="">All</option>
@@ -26,7 +26,7 @@ Value: {{ form.value | json }}
       </select>
     </div>
 
-    <div class="form-group col-auto">
+    <div class="form-group large-control col-auto">
       <div>
         <label for="price-range">Price Range:</label>
       </div>
@@ -36,7 +36,7 @@ Value: {{ form.value | json }}
       </div>
     </div>
 
-    <div class="form-group col-auto">
+    <div class="form-group large-control col-auto">
       <div>
         <label for="year-range">Year Range:</label>
       </div>
