@@ -12,6 +12,6 @@ app.use(cors())
 app.use(express.json())
 app.use('/api', router)
 app.use(express.static(path.join(__dirname, '/../../public')))
-app.all('*', () => { throw new NotFoundError() })
+app.all('*', () => { throw new NotFoundError('Endpoint not found') })
 
 app.use(errorHandler)
