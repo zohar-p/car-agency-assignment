@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/cars.service';
 import { Filters } from 'src/app/types/filters.type';
 import { constants } from 'src/constants';
 
 @Component({
-  selector: 'app-cars-display-form',
-  templateUrl: './cars-display-form.component.html',
-  styleUrls: ['./cars-display-form.component.sass']
+  selector: 'app-filters-form',
+  templateUrl: './filters-form.component.html',
+  styleUrls: ['./filters-form.component.sass']
 })
-export class CarsDisplayFormComponent implements OnInit, OnDestroy {
+export class FiltersFormComponent implements OnInit, OnDestroy {
   form: FormGroup
   formSubscription: Subscription
   typeOptions = ['Sedan', 'Station Wagon', 'Hatchback', 'SUV']
@@ -31,19 +31,31 @@ export class CarsDisplayFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      type: constants.OPTION_ALL,
-      brand: constants.OPTION_ALL,
-      model: constants.OPTION_ALL,
+      type: '',
+      brand: '',
+      model: '',
       minPrice: '',
       maxPrice: '',
       minYear: '',
       maxYear: '',
-      currency: 'ILS',// TODO BEFORE PR: make enum
     })
-    this.form.valueChanges.subscribe((values: Filters) => this.onValueChange(values))
+    this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
+    this.form.get('model')!.disable()
+
+    this.form.valueChanges.subscribe(values => this._onValueChange(values))
   }
 
-  onValueChange(values: Filters) {
+  private _onBrandChange(value: string) {
+    const modelControl = this.form.get('model')!
+    if (!value) {
+      modelControl.setValue('')
+      modelControl.disable()
+    } else {
+      modelControl.enable()
+    }
+  }
+
+  private _onValueChange(values: Filters) {
     this.modelOptions = this.modelsByBrand[values.brand!] || []
     this._carsService.fetchCars(values)
   }
@@ -51,5 +63,6 @@ export class CarsDisplayFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.formSubscription.unsubscribe()
   }
+
 
 }

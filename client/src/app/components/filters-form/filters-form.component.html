@@ -5,7 +5,7 @@ Value: {{ form.value | json }}
     <div class="form-group col-auto">
       <label for="type">Type: </label>
       <select id="type" class="custom-select" formControlName="type">
-        <option value="all">All</option>
+        <option value="">All</option>
         <option *ngFor="let carType of typeOptions" [value]="carType">{{ carType }}</option>
       </select>
     </div>
@@ -13,7 +13,7 @@ Value: {{ form.value | json }}
     <div class="form-group col-auto">
       <label for="brand">Brand: </label>
       <select id="brand" class="custom-select" formControlName="brand">
-        <option value="all">All</option>
+        <option value="">All</option>
         <option *ngFor="let brand of brandOptions" [value]="brand">{{ brand }}</option>
       </select>
     </div>
@@ -21,7 +21,7 @@ Value: {{ form.value | json }}
     <div class="form-group col-auto">
       <label for="model">Model: </label>
       <select id="model" class="custom-select" formControlName="model">
-        <option value="all">All</option>
+        <option value="">All</option>
         <option *ngFor="let model of modelOptions" [value]="model">{{ model }}</option>
       </select>
     </div>

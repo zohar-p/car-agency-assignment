@@ -9,9 +9,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CarsDisplayFormComponent } from './components/cars-display-form/cars-display-form.component';
 import { SortFormComponent } from './components/sort-form/sort-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
+import { FiltersFormComponent } from './components/filters-form/filters-form.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { SortPipe } from './pipes/sort/sort.pipe';
     NotFoundComponent,
     CarsListComponent,
     HomeComponent,
-    CarsDisplayFormComponent,
     SortFormComponent,
     SortPipe,
+    FiltersFormComponent,
   ],
   imports: [
     BrowserModule,

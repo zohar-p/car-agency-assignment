@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ICar } from './car.entity';
@@ -21,8 +21,9 @@ export class CarsService {
     this.displayedCars$.next(this._cars)
   }
 
-  fetchCars(values?: Filters): Observable<ICar[]> {
-    const observable = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars')
+  fetchCars(filters: Filters = {}): Observable<ICar[]> {
+    const params =  new HttpParams({fromObject: filters as { [key: string]: any }})
+    const observable = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars', { params })
     observable.subscribe(response => this.cars = response)
     return observable
   }
