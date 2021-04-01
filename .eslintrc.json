@@ -11,8 +11,8 @@
         "node": true,
         "es6": true
     },
-    "plugins": ["prettier"],
-    "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:json/recommended"],
+    "plugins": ["prettier", "cypress"],
+    "extends": ["eslint:recommended", "plugin:cypress/recommended", "plugin:prettier/recommended", "plugin:json/recommended"],
     "rules": {
         "no-unused-vars": "warn",
         "quotes": ["error", "single"],
