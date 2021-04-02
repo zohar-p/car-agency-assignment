@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,5 +7,11 @@ import { Injectable } from '@angular/core';
 export class UserService {
   isAdmin: boolean = false
 
-  constructor() { }
+  constructor(
+    private _httpClient: HttpClient
+  ) { }
+
+  login(password: string) {
+    return this._httpClient.post('http://localhost:3000/api/login', { password })
+  }
 }
