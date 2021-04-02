@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SortFormComponent } from './components/sort-form/sort-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { FiltersFormComponent } from './components/filters-form/filters-form.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FiltersFormComponent } from './components/filters-form/filters-form.com
     SortFormComponent,
     SortPipe,
     FiltersFormComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
