@@ -14,6 +14,7 @@ import { SortPipe } from './pipes/sort/sort.pipe';
 import { FiltersFormComponent } from './components/filters-form/filters-form.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { LoadMoreBtnComponent } from './components/load-more-btn/load-more-btn.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
     FiltersFormComponent,
     TopBarComponent,
     AdminLoginComponent,
+    LoadMoreBtnComponent,
   ],
   imports: [
     BrowserModule,

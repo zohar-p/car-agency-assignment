@@ -9,7 +9,6 @@ import { Filters } from './types/filters.type';
   providedIn: 'root'
 })
 export class CarsService {
-  private _cars: ICar[] = []
   cars$ = new BehaviorSubject<ICar[]>([])
   sortBy$ = new BehaviorSubject<'price' | 'year'>('price')
   filters$ = new BehaviorSubject<Filters>({})
@@ -26,28 +25,31 @@ export class CarsService {
 
   onSettingsChange() {
     this.cars$.next([])
-    this.isLoading$.next(true)
     const params = this._assembleFetchParams(0)
-    this.fetchCars(params).subscribe(fetchedCars => {
-      this.replaceCars(fetchedCars)
-      this.isLoading$.next(false)
-    })
+    this.fetchCars(params).subscribe(fetchedCars => this._replaceCars(fetchedCars))
   }
 
   onLoadMore() {
     const params = this._assembleFetchParams()
-    this.fetchCars(params).subscribe(fetchedCars => this.addCars(fetchedCars))
+    this.fetchCars(params).subscribe(fetchedCars => this._addCars(fetchedCars))
   }
 
   fetchCars(params: HttpParams): Observable<ICar[]> {
-    return this._httpClient.get<ICar[]>('http://localhost:3000/api/cars', { params })
+    this.isLoading$.next(true)
+    const response = this._httpClient.get<ICar[]>('http://localhost:3000/api/cars', { params }).pipe(share())
+    response.subscribe(() => this.isLoading$.next(false))
+    return response
   }
 
-  addCars(cars: ICar[]) {
+  getCarById(id: string): ICar | null {
+    return this.cars$.getValue().find(car => car.id === id) || null
+  }
+
+  private _addCars(cars: ICar[]) {
     this.cars$.next([ ...this.cars$.getValue(), ...cars ])
   }
 
-  replaceCars(cars: ICar[]) { this.cars$.next(cars) }
+  private _replaceCars(cars: ICar[]) { this.cars$.next(cars) }
 
   private _assembleFetchParams(predefinedOffset?: number): HttpParams {
     const filters = this.filters$.getValue() as { [key: string]: any }
@@ -55,10 +57,6 @@ export class CarsService {
     const offset = predefinedOffset?.toString() || this.carsCount.toString()
     const params =  new HttpParams({ fromObject: { ...filters, offset, sort } })
     return params
-  }
-
-  getCarById(id: string): ICar | null {
-    return this._cars.find(car => car.id === id) || null
   }
 
 }
