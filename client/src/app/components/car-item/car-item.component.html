@@ -11,7 +11,7 @@
         year: {{ car.year }}
       </p>
       <p class="card-text">
-        price: {{ car.price }}
+        price: {{ car.price | currency:currency }}
       </p>
     </div>
   </li>

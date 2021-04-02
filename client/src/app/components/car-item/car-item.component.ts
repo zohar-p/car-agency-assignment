@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormatsService } from 'src/app/formats.service';
 import { ICar } from '../../car.entity';
 
 @Component({
@@ -8,10 +9,14 @@ import { ICar } from '../../car.entity';
 })
 export class CarItemComponent implements OnInit {
   @Input() car: ICar
+  currency: string
 
-  constructor() { }
+  constructor(
+    private _formatsService: FormatsService
+  ) { }
 
   ngOnInit(): void {
+    this._formatsService.currency$.subscribe(currency => this.currency = currency)
   }
 
 }

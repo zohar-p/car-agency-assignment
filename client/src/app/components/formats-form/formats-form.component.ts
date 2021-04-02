@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { FormatsService } from 'src/app/formats.service';
 
 @Component({
   selector: 'app-formats-form',
@@ -13,18 +14,20 @@ export class FormatsFormComponent implements OnInit {
   currencyOptions = ['ILS', 'USD']
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _formatsService: FormatsService
     ) { }
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
       currency: 'ILS'
     })
-    const formSubscription = this.form.valueChanges.subscribe(values => this.onValueChange())
+    const formSubscription = this.form.valueChanges.subscribe(values => this.onValueChange(values.currency))
     this.subscriptions.push(formSubscription)
   }
 
-  onValueChange() {
+  onValueChange(currency: string) {
+    this._formatsService.currency$.next(currency)
   }
 
   ngOnDestroy() {
