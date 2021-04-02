@@ -13,6 +13,7 @@ import { SortFormComponent } from './components/sort-form/sort-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { FiltersFormComponent } from './components/filters-form/filters-form.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     SortPipe,
     FiltersFormComponent,
     TopBarComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
