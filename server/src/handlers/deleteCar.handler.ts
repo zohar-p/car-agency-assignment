@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { NotFoundError } from "../errors/not_found.err";
+import { NotFoundError } from "../errors/not-found.err";
 import { CarModel } from "../models/car.model";
 
 export const deleteCarHandler = async (req: Request, res: Response) => {

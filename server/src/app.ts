@@ -4,7 +4,7 @@ import path from 'path'
 import { errorHandler } from './middleware/error_handler'
 import { router } from './router'
 require('express-async-errors')
-import { NotFoundError } from './errors/not_found.err'
+import { NotFoundError } from './errors/not-found.err'
 
 export const app = express()
 
