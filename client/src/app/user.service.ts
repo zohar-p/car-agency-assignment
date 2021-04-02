@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  isAdmin: boolean = false
+  isAdmin$ = new BehaviorSubject<boolean>(false)
 
   constructor(
     private _httpClient: HttpClient
@@ -13,5 +14,9 @@ export class UserService {
 
   login(password: string) {
     return this._httpClient.post('http://localhost:3000/api/login', { password })
+  }
+
+  logout() {
+    this.isAdmin$.next(false)
   }
 }

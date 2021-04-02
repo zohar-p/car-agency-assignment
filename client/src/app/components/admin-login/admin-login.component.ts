@@ -34,7 +34,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
-    this._userService.isAdmin = true
+    this._userService.isAdmin$.next(true)
     this.closeButton.nativeElement.click()
   }
 
