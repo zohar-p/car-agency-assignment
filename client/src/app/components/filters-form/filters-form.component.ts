@@ -12,7 +12,7 @@ import { constants } from 'src/constants';
 })
 export class FiltersFormComponent implements OnInit, OnDestroy {
   form: FormGroup
-  formSubscription: Subscription
+  subscriptions: Subscription[] = []
   typeOptions = ['Sedan', 'Station Wagon', 'Hatchback', 'SUV']
   brandOptions = ['Chevrolet', 'Citroen', 'Fiat', 'Honda', 'Suzuki']
   modelOptions: string[] = []
@@ -40,9 +40,10 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
       maxYear: '',
     })
     // TODO BEFORE PR: filter price on blur
-    this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
+    const formSubscription = this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
     this.form.get('model')!.disable()
     this.form.valueChanges.subscribe(values => this._onValueChange(values))
+    this.subscriptions.push(formSubscription)
   }
 
   private _onBrandChange(value: string) {
@@ -61,7 +62,7 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.formSubscription.unsubscribe()
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 
