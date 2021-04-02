@@ -15,6 +15,7 @@ import { FiltersFormComponent } from './components/filters-form/filters-form.com
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { LoadMoreBtnComponent } from './components/load-more-btn/load-more-btn.component';
+import { FormatsFormComponent } from './components/formats-form/formats-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoadMoreBtnComponent } from './components/load-more-btn/load-more-btn.c
     TopBarComponent,
     AdminLoginComponent,
     LoadMoreBtnComponent,
+    FormatsFormComponent,
   ],
   imports: [
     BrowserModule,
