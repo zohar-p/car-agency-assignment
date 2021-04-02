@@ -1,9 +1,10 @@
 <div class="container">
-<ul class="row justify-content-between" >
-    <app-car-item 
-      class="col-sm-4 mb-4" 
-      *ngFor="let car of (cars | sort:sortBy)" 
-      [car]="car"
-    ></app-car-item>
-</ul>
+  <div *ngIf="!cars.length && !isLoading">No Results</div>
+  <ul class="row justify-content-between" >
+      <app-car-item 
+        class="col-sm-4 mb-4" 
+        *ngFor="let car of (cars | sort:sortBy)" 
+        [car]="car"
+      ></app-car-item>
+  </ul>
 </div>

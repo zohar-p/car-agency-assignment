@@ -25,8 +25,7 @@ export class SortFormComponent implements OnInit {
   }
 
   onValueChange(value: 'price' | 'year') {
-    this._carsService.fetchCars()
-      .subscribe(() => this._carsService.sortBy$.next(value))
+    this._carsService.sortBy$.next(value)
   }
 
   ngOnDestroy() {

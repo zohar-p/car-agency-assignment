@@ -17,9 +17,10 @@ const generateQuery = (filters: Record<string, string>): FilterQuery<typeof CarM
 export const getCarsHandler = async (req: Request, res: Response) => {
   const { sort, offset, ...filters } = req.query as Record<string, string>
   const query = generateQuery(filters)
-  const cars = await CarModel.find(query)
+  const cars = await CarModel
+    .find(query)
     .sort({ [sort]: 1 })
-    .skip(+offset)
-    .limit(12)
+    .skip(+offset || 0)
+    .limit(3)
   res.json(cars)
 }

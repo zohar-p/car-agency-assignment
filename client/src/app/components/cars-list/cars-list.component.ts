@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/cars.service';
-import { Filters } from 'src/app/types/filters.type';
 import { ICar } from '../../car.entity';
 
 @Component({
@@ -12,6 +11,7 @@ import { ICar } from '../../car.entity';
 export class CarsListComponent implements OnInit, OnDestroy {
   sortBy: 'price' | 'year' = 'price'
   cars: ICar[] = []
+  isLoading: boolean = true
   subscriptions: Subscription[] = []
 
   constructor(
@@ -23,7 +23,9 @@ export class CarsListComponent implements OnInit, OnDestroy {
       .subscribe(cars => this.cars = cars)
     const sortBySubscription = this._carsService.sortBy$
       .subscribe(sortBy => this.sortBy = sortBy)
-    this.subscriptions.push(carSubscription, sortBySubscription)
+    const isLoadingSubscription = this._carsService.isLoading$
+      .subscribe(isLoading => this.isLoading = isLoading)
+    this.subscriptions.push(carSubscription, sortBySubscription, isLoadingSubscription)
   }
 
   ngOnDestroy() {
