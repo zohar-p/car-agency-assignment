@@ -1,13 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
+      
       <button
         (click)="onLoadMore()"
         type="button"
         class="btn btn-outline-primary"
-        [ngClass]="isLoading ? 'btn-outline-secondary' : 'btn-outline-primary'"
+        [disabled]="isLoading"
       >
-        Load More
+        <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        {{ isLoading ? '' : "Load More" }}
       </button>
     </div>
   </div>
