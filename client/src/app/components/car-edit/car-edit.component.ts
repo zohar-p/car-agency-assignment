@@ -40,8 +40,8 @@ export class CarEditComponent implements OnInit {
       type: ['', Validators.required],
       brand: ['', Validators.required],
       model: ['', Validators.required],
-      year: ['', Validators.required],
-      price: ['', Validators.required],
+      year: ['', [Validators.required, Validators.min(1950)]],
+      price: ['', [Validators.required, Validators.min(1)]],
       branch: ['', Validators.required]
     })
     this.initialValues = this.form.value

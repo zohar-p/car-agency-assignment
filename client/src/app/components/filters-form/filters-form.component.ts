@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/services/cars.service';
 import { Filters } from 'src/app/types/filters.type';
@@ -30,7 +30,7 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
       type: '',
       brand: '',
       model: '',
-      minPrice: '',
+      minPrice: ['', Validators.min(0)],
       maxPrice: '',
       minYear: '',
       maxYear: '',
@@ -54,7 +54,9 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
   }
 
   private _onValueChange(values: Filters) {
-    this._carsService.filters$.next(values)
+    if (this.form.valid) {
+      this._carsService.filters$.next(values)
+    }
   }
 
   ngOnDestroy() {
