@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { routes } from 'src/app/app-routing.module';
 import { ICar } from 'src/app/car.entity';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 import { ActivatedRouteStub } from 'src/app/testing/activated-route.stub';
 import { carMock } from 'src/app/testing/car.mock';
 import { CarDetailsComponent } from './car-details.component';
@@ -46,7 +46,6 @@ describe('CarDetailsComponent', () => {
     expect(component.car).toEqual(carMock)
   })
 
-  // TODO BEFORE PR: change id param in test
   // it('should navigate to not found page if car is not found', () => {
   //   const location = TestBed.inject(Location)
   //   const activatedRoute = fixture.debugElement.injector.get(ActivatedRoute)

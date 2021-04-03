@@ -35,7 +35,6 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
       minYear: ['', Validators.min(0)],
       maxYear: ['', Validators.min(0)],
     })
-    // TODO BEFORE PR: filter price on blur
     const brandSubscription = this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
     this.form.get('model')!.disable()
     const formSubscription = this.form.valueChanges.subscribe(values => this._onValueChange(values))

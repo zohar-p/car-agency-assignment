@@ -19,7 +19,7 @@ export class SortFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      sortBy: 'price', // TODO BEFORE PR: make enum
+      sortBy: 'price'
     })
     const formSubscription = this.form.valueChanges.subscribe(form => this.onValueChange(form.sortBy))
     this.subscriptions.push(formSubscription)

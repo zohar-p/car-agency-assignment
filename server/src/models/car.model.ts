@@ -2,7 +2,6 @@ import { model, Schema } from "mongoose";
 
 
 const carSchema = new Schema({
-  // TODO BEFORE PR: add enums
   type: {
     type: String,
     required: true,
