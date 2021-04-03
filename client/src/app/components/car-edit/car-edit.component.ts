@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ICar } from 'src/app/car.entity';
 import { CarsService } from 'src/app/cars.service';
+import { EditMode } from 'src/app/types/edit-mode.enum';
 
 @Component({
   selector: 'app-car-edit',
@@ -16,6 +17,8 @@ export class CarEditComponent implements OnInit {
   typeOptions: string[] = []
   brandOptions: string[] = []
   modelOptions: string[] = []
+  carId: string
+  editMode: EditMode
   @ViewChild('close') closeButton: ElementRef
 
   constructor(
@@ -37,7 +40,13 @@ export class CarEditComponent implements OnInit {
     })
 
     this.subscriptions.push(
-      this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
+      this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value)),
+      this._carsService.editMode$.subscribe(editMode => this.editMode = editMode),
+      this._carsService.editedCar$.subscribe(editedCar => {
+        const { id, ...car } = editedCar
+        this.carId = id
+        this.form.setValue(car)
+      })
     )
     this.form.get('model')!.disable()
     
@@ -53,8 +62,13 @@ export class CarEditComponent implements OnInit {
       modelControl.enable({ emitEvent: false })
     }
   }
+
+  onCancel() {
+    this.closeButton.nativeElement.click()
+    this.form.reset()
+  }
   
-  onSubmit() {
+  onCreate() {
     this._httpClient.post<ICar>('http://localhost:3000/api/cars', this.form.value)
       .subscribe(createdCar => this.onSuccessfulCreation(createdCar))
   }
@@ -63,9 +77,17 @@ export class CarEditComponent implements OnInit {
     this._carsService.addCars([car])
   }
 
-  onCancel() {
+  onUpdate() {
+    this._httpClient.put<ICar>(`http://localhost:3000/api/cars/${this.carId}`, this.form.value)
+      .subscribe(updatedCar => this.onSuccessfulUpdate(updatedCar))
+  }
+
+  onSuccessfulUpdate(updatedCar: ICar) {
+    const cars = this._carsService.cars$.getValue()
+    const index = cars.findIndex(car => car.id === updatedCar.id)
+    cars[index] = updatedCar
+    this._carsService.cars$.next(cars)
     this.closeButton.nativeElement.click()
-    this.form.reset()
   }
 
   ngOnDestroy() {

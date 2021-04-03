@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { ICar } from './car.entity';
+import { EditMode } from './types/edit-mode.enum';
 import { Filters } from './types/filters.type';
 
 @Injectable({
@@ -22,6 +23,8 @@ export class CarsService {
   sortBy$ = new BehaviorSubject<'price' | 'year'>('price')
   filters$ = new BehaviorSubject<Filters>({})
   isLoading$ = new Subject<boolean>()
+  editMode$ = new Subject<EditMode>()
+  editedCar$ = new Subject<ICar>()
 
   constructor(
     private _httpClient: HttpClient

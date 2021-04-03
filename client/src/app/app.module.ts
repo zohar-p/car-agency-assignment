@@ -19,6 +19,7 @@ import { FormatsFormComponent } from './components/formats-form/formats-form.com
 import { CurrencyConversionPipe } from './pipes/currency-conversion/currency-conversion.pipe';
 import { CarActionsComponent } from './components/car-actions/car-actions.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { CreateCarBtnComponent } from './components/create-car-btn/create-car-btn.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CarEditComponent } from './components/car-edit/car-edit.component';
     CurrencyConversionPipe,
     CarActionsComponent,
     CarEditComponent,
+    CreateCarBtnComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form">
         <div class="modal-body">
           
           <div class="form-group">
@@ -46,7 +46,8 @@
         </div>
         <div class="modal-footer">
           <button (click)="onCancel()" type="button" class="btn btn-scondary">Cancel</button>
-          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Create</button>
+          <button (click)="onCreate()" *ngIf="editMode === 'create'" [disabled]="!form.valid" class="btn btn-primary">Create</button>
+          <button (click)="onUpdate()" *ngIf="editMode === 'update'" [disabled]="!form.valid" class="btn btn-primary">Update</button>
         </div>
       </form>
     </div>

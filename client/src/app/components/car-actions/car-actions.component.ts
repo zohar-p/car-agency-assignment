@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { CarsService } from 'src/app/cars.service';
+import { EditMode } from 'src/app/types/edit-mode.enum';
 
 @Component({
   selector: 'app-car-actions',
@@ -18,7 +19,8 @@ export class CarActionsComponent implements OnInit {
   }
 
   onEdit() {
-
+    this._carsService.editMode$.next(EditMode.UPDATE)
+    this._carsService.editedCar$.next(this._carsService.getCar(this.carId)!)
   }
 
   onDelete() {
