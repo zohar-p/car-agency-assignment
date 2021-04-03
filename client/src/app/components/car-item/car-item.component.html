@@ -14,5 +14,11 @@
     <p class="card-text">
       price: {{ car.price | currencyConversion:currency | currency:currency  }}
     </p>
+    <p class="card-text">
+      Branch: {{ car.branch }}
+    </p>
+    <p class="card-text">
+      Publish Date: {{ car.publishDate | date }}
+    </p>
   </div>
 </li>

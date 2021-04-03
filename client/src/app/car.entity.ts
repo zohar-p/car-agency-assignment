@@ -5,4 +5,6 @@ export interface ICar {
   model: string
   year: string
   price: string
+  branch: string
+  publishDate: string
 }
