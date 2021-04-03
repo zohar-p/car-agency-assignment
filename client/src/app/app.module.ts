@@ -20,6 +20,8 @@ import { CurrencyConversionPipe } from './pipes/currency-conversion/currency-con
 import { CarActionsComponent } from './components/car-actions/car-actions.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { CreateCarBtnComponent } from './components/create-car-btn/create-car-btn.component';
+import { BranchEditComponent } from './components/branch-edit/branch-edit.component';
+import { EditBranchesBtnComponent } from './components/edit-branches-btn/edit-branches-btn.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { CreateCarBtnComponent } from './components/create-car-btn/create-car-bt
     CarActionsComponent,
     CarEditComponent,
     CreateCarBtnComponent,
+    BranchEditComponent,
+    EditBranchesBtnComponent,
   ],
   imports: [
     BrowserModule,
