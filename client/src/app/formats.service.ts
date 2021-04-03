@@ -5,7 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class FormatsService {
-  currency$ = new BehaviorSubject<string>('ILS')
+  currency$ = new BehaviorSubject<string>(localStorage.getItem('currency') || 'ILS')
   
-  constructor() { }
+  constructor() {
+    this.currency$.subscribe(currency => this.onCurrencyChange(currency))
+  }
+
+  onCurrencyChange(currency: string) {
+    localStorage.setItem('currency', currency)
+  }
 }

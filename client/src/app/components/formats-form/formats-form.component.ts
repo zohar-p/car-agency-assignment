@@ -20,7 +20,7 @@ export class FormatsFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      currency: 'ILS'
+      currency: this._formatsService.currency$.getValue()
     })
     this.subscriptions.push(
       this.form.valueChanges.subscribe(values => this.onValueChange(values.currency))
