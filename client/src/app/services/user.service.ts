@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  isAdmin$ = new BehaviorSubject<boolean>(true)
+  isAdmin$ = new BehaviorSubject<boolean>(false)
 
   constructor(
     private _httpClient: HttpClient

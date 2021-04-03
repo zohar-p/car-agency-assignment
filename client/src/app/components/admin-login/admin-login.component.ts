@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminLoginComponent implements OnInit {
   form: FormGroup
+  wrongPassword: boolean = false
   @ViewChild('close') closeButton: ElementRef
 
   constructor(
@@ -33,12 +34,16 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
+    this.wrongPassword = false
     this._userService.isAdmin$.next(true)
     this.closeButton.nativeElement.click()
   }
 
   onLoginFailure(status: number) {
-// TODO BEFORE PR: display error
+    if (status == 400) {
+      this.wrongPassword = true
+      this.form.reset()
+    }
   }
 
 }

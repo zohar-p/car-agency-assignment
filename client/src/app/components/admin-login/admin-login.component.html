@@ -12,6 +12,7 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" formControlName="password" class="form-control" id="password">
+            <small *ngIf="wrongPassword" class="text-danger">Wrong password</small>
           </div>
         </div>
         <div class="modal-footer">

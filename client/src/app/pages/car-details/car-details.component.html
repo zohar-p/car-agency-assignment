@@ -4,7 +4,9 @@
     <div class="card-body">
       <p>Type: {{ car.type }}</p>
       <p>year: {{ car.year }}</p>
-      <p>price: {{ car.price }}</p>
+      <p>Price: {{ car.price }}</p>
+      <p>Branch: {{ car.branch.name }}</p>
+      <p>Publish Date: {{ car.publishDate | date }}</p>
     </div>
   </div>
 </div>
