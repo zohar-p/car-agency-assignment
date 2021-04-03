@@ -25,7 +25,9 @@ export class CarActionsComponent implements OnInit {
     console.log('Ran')
     this._httpClient.delete(`http://localhost:3000/api/cars/${this.carId}`)
       .subscribe({
-        next: response => {console.log(response)},
+        next: () => {
+          this._carsService.removeCar(this.carId)
+        },
         error: err => {console.log(err)}
       })
   }

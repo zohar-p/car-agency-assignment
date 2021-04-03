@@ -6,5 +6,5 @@ export const deleteCarHandler = async (req: Request, res: Response) => {
   const carId = req.params.id
   const deletedCar = await CarModel.findByIdAndDelete(carId)
   if (!deletedCar) { throw new NotFoundError('Car not found')}
-  res.status(204).send()
+  res.status(204).send({})
 }

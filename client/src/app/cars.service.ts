@@ -41,8 +41,15 @@ export class CarsService {
     return response
   }
 
-  getCarById(id: string): ICar | null {
+  getCar(id: string): ICar | null {
     return this.cars$.getValue().find(car => car.id === id) || null
+  }
+
+  removeCar(id: string) {
+    const cars = this.cars$.getValue();
+    const index = cars.findIndex(car => car.id === id)
+    cars.splice(index, 1)
+    this.cars$.next(cars)
   }
 
   private _addCars(cars: ICar[]) {

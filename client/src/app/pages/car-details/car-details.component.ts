@@ -27,7 +27,7 @@ export class CarDetailsComponent implements OnInit {
       const id = params.get('id')
       if (!id) { this._router.navigate(['/not-found'])}
       this._id = id!
-      const car = this._carsService.getCarById(this._id)
+      const car = this._carsService.getCar(this._id)
       if (!car) { this._router.navigate(['/not-found'])}
       this.car = car!
     })
