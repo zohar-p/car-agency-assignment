@@ -22,5 +22,6 @@ export const getCarsHandler = async (req: Request, res: Response) => {
     .sort({ [sort]: 1 })
     .skip(+offset || 0)
     .limit(12)
+    .populate('branch')
   res.json(cars)
 }

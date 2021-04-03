@@ -84,6 +84,8 @@ export class CarEditComponent implements OnInit {
 
   onSuccessfulCreation(car: ICar) {
     this._carsService.addCars([car])
+    this.closeButton.nativeElement.click()
+    this.form.reset(this.initialValues)
   }
 
   onUpdate() {

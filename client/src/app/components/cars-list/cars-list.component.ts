@@ -19,13 +19,11 @@ export class CarsListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    const carSubscription = this._carsService.cars$
-      .subscribe(cars => this.cars = cars)
-    const sortBySubscription = this._carsService.sortBy$
-      .subscribe(sortBy => this.sortBy = sortBy)
-    const isLoadingSubscription = this._carsService.isLoading$
-      .subscribe(isLoading => this.isLoading = isLoading)
-    this.subscriptions.push(carSubscription, sortBySubscription, isLoadingSubscription)
+    this.subscriptions.push(
+      this._carsService.cars$.subscribe(cars => this.cars = cars),
+      this._carsService.sortBy$.subscribe(sortBy => this.sortBy = sortBy),
+      this._carsService.isLoading$.subscribe(isLoading => this.isLoading = isLoading)
+    )
   }
 
   ngOnDestroy() {

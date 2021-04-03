@@ -1,3 +1,5 @@
+import { IBranch } from "./branch.entity";
+
 export interface ICar {
   id: string
   type: string
@@ -5,6 +7,6 @@ export interface ICar {
   model: string
   year: string
   price: string
-  branch: string
+  branch: IBranch
   publishDate: string
 }

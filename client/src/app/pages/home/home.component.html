@@ -1,6 +1,11 @@
-<app-sort-form></app-sort-form>
-<app-filters-form></app-filters-form>
-<app-edit-branches-btn *ngIf="isAdmin"></app-edit-branches-btn>
-<app-create-car-btn *ngIf="isAdmin"></app-create-car-btn>
-<app-cars-list></app-cars-list>
-<app-load-more-btn></app-load-more-btn>
+<div class="container">
+  <div class="row">
+    <app-sort-form></app-sort-form>
+    <app-filters-form></app-filters-form>
+
+  </div>
+  <app-edit-branches-btn *ngIf="isAdmin"></app-edit-branches-btn>
+  <app-create-car-btn *ngIf="isAdmin"></app-create-car-btn>
+  <app-cars-list></app-cars-list>
+  <app-load-more-btn></app-load-more-btn>
+</div>
