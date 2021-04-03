@@ -7,7 +7,7 @@ import { CarsService } from 'src/app/cars.service';
   styleUrls: ['./load-more-btn.component.sass']
 })
 export class LoadMoreBtnComponent implements OnInit {
-  isLoading: boolean = true
+  isLoading: boolean = false
 
   constructor(
     private _carsService: CarsService
