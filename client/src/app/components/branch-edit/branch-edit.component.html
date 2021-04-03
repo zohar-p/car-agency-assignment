@@ -7,6 +7,18 @@
         </button>
       </div>
       <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" id="branch-name" formControlName="name" >
+              <div class="input-group-append">
+                <button type="submit" class="input-group-text">
+                  <i class="bi bi-plus-circle text-primary"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
         <ul class="list-group">
           <li *ngFor="let branch of branches" class="list-group-item d-flex align-items-center py-0 pr-0">
             <div class="mr-auto">{{ branch.name }}</div>
