@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CarModel } from "../models/car.model";
+import { CarModel } from "../../models/car.model";
 
 export const createCarHandler = async (req: Request, res: Response) => {
   // TODO BEFORE PR: validate car

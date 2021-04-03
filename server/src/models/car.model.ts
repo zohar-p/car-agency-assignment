@@ -22,6 +22,15 @@ const carSchema = new Schema({
   year: {
     type: Number,
     required: true
+  },
+  publishDate: {
+    type: Date,
+    default: new Date()
+  },
+  branch: {
+    type: Schema.Types.ObjectId,
+    ref: 'Branch',
+    required: true
   }
 })
 

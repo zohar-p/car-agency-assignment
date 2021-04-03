@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { FilterQuery } from "mongoose";
-import { CarModel } from "../models/car.model";
+import { CarModel } from "../../models/car.model";
 
 const generateQuery = (filters: Record<string, string>): FilterQuery<typeof CarModel> => {
   const query: Partial<FilterQuery<typeof CarModel>> = {}

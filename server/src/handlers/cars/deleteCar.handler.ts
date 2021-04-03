@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { NotFoundError } from "../errors/not-found.err";
-import { CarModel } from "../models/car.model";
+import { NotFoundError } from "../../errors/not-found.err";
+import { CarModel } from "../../models/car.model";
 
 export const deleteCarHandler = async (req: Request, res: Response) => {
   const carId = req.params.id
