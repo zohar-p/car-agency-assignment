@@ -6,6 +6,8 @@ import { getCarsHandler } from './handlers/cars/getCars.handler'
 import { loginHandler } from './handlers/users/login.handler'
 import { updateCarHandler } from './handlers/cars/updateCar.handler'
 import { createBranchHandler } from './handlers/branches/create-branch.handler'
+import { getBranchesHandler } from './handlers/branches/get-branches.handler'
+import { deleteBranchHandler } from './handlers/branches/delete-branch.handler'
 
 export const router = Router()
 
@@ -17,7 +19,7 @@ router.put('/cars/:id', asyncHandler(updateCarHandler))
 router.delete('/cars/:id', asyncHandler(deleteCarHandler))
 
 router.post('/branches', asyncHandler(createBranchHandler))
-// router.get('/branches', asyncHandler())
-// router.delete('/branches/:id', asyncHandler())
+router.get('/branches', asyncHandler(getBranchesHandler))
+router.delete('/branches/:id', asyncHandler(deleteBranchHandler))
 
 router.post('/login', asyncHandler(loginHandler))
