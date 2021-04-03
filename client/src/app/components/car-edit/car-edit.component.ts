@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { IBranch } from 'src/app/branch.entity';
 import { ICar } from 'src/app/car.entity';
-import { CarsService } from 'src/app/cars.service';
+import { BranchesService } from 'src/app/services/branches.service';
+import { CarsService } from 'src/app/services/cars.service';
 import { EditMode } from 'src/app/types/edit-mode.enum';
 
 @Component({
@@ -18,6 +20,7 @@ export class CarEditComponent implements OnInit {
   typeOptions: string[] = []
   brandOptions: string[] = []
   modelOptions: string[] = []
+  branchOptions: IBranch[] = []
   carId: string
   editMode: EditMode
   @ViewChild('close') closeButton: ElementRef
@@ -26,6 +29,7 @@ export class CarEditComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _httpClient: HttpClient,
     private _carsService: CarsService,
+    private _branchesService: BranchesService
   ) {
     this.typeOptions = this._carsService.types
     this.brandOptions = this._carsService.brands
@@ -45,11 +49,8 @@ export class CarEditComponent implements OnInit {
     this.subscriptions.push(
       this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value)),
       this._carsService.editMode$.subscribe(editMode => this.editMode = editMode),
-      this._carsService.editedCar$.subscribe(editedCar => {
-        const { id, ...car } = editedCar
-        this.carId = id
-        this.form.setValue(car)
-      })
+      this._carsService.editedCar$.subscribe(editedCar => this.setEditedCar(editedCar)),
+      this._branchesService.branches$.subscribe(branches => this.branchOptions = branches)
     )
     this.form.get('model')!.disable()
   }
@@ -65,9 +66,15 @@ export class CarEditComponent implements OnInit {
     }
   }
 
+  setEditedCar(editedCar: ICar) {
+    const { id, ...car } = editedCar
+    this.carId = id
+    this.form.setValue(car)
+  }
+
   onCancel() {
     this.closeButton.nativeElement.click()
-    this.form.reset()
+    this.form.reset(this.initialValues)
   }
   
   onCreate() {

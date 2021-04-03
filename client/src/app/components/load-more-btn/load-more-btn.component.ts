@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 
 @Component({
   selector: 'app-load-more-btn',

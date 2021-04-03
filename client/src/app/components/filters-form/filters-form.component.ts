@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 import { Filters } from 'src/app/types/filters.type';
 import { constants } from 'src/constants';
 

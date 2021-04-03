@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FormatsService } from 'src/app/formats.service';
-import { UserService } from 'src/app/user.service';
+import { FormatsService } from 'src/app/services/formats.service';
+import { UserService } from 'src/app/services/user.service';
 import { ICar } from '../../car.entity';
 
 @Component({

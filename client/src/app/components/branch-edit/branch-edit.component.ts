@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IBranch } from 'src/app/branch.entity';
+import { BranchesService } from 'src/app/services/branches.service';
 
 @Component({
   selector: 'app-branch-edit',
@@ -16,22 +17,24 @@ export class BranchEditComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _branchesService: BranchesService
   ) { }
 
   ngOnInit(): void {
-    this._httpClient.get<IBranch[]>('http://localhost:3000/api/branches')
-      .subscribe(branches => this.branches = branches)
     this.form = this._formBuilder.group({
       name: ''
     })
+    this.subscriptions.push(
+      this._branchesService.branches$.subscribe(branches => this.branches = branches)
+    )
   }
 
   onSubmit() {
     this.form.disable()
     this._httpClient.post<IBranch>('http://localhost:3000/api/branches', this.form.value)
       .subscribe(createdBranch => {
-        this.branches.unshift(createdBranch)
+        this._branchesService.branches$.next([ createdBranch, ...this.branches ])
         this.form.reset()
         this.form.enable()
       })
@@ -43,6 +46,10 @@ export class BranchEditComponent implements OnInit {
         const index = this.branches.findIndex(branch => branch.id === id)
         this.branches.splice(index, 1)
       })
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 }

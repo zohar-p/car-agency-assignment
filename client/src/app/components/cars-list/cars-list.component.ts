@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 import { ICar } from '../../car.entity';
 
 @Component({
@@ -15,7 +15,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
 
   constructor(
-    private _carsService: CarsService    
+    private _carsService: CarsService 
   ) { }
 
   ngOnInit(): void {

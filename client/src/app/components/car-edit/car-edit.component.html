@@ -44,8 +44,11 @@
           </div>
 
           <div class="form-group">
-            <label for="branch">Branch</label>
-            <input type="text" formControlName="branch" class="form-control" id="branch">
+            <label for="branch">Branch: </label>
+            <select id="branch" class="custom-select" formControlName="branch">
+              <option value="">Select branch</option>
+              <option *ngFor="let branch of branchOptions" [value]="branch.id">{{ branch.name }}</option>
+            </select>
           </div>
           
         </div>

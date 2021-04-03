@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormatsService } from 'src/app/formats.service';
+import { FormatsService } from 'src/app/services/formats.service';
 
 @Component({
   selector: 'app-formats-form',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 import { EditMode } from 'src/app/types/edit-mode.enum';
 
 @Component({

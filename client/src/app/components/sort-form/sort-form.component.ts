@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CarsService } from 'src/app/cars.service';
+import { CarsService } from 'src/app/services/cars.service';
 
 @Component({
   selector: 'app-sort-form',
@@ -14,7 +14,8 @@ export class SortFormComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _carsService: CarsService) { }
+    private _carsService: CarsService
+  ) { }
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({

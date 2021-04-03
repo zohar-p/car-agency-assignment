@@ -2,9 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { ICar } from './car.entity';
-import { EditMode } from './types/edit-mode.enum';
-import { Filters } from './types/filters.type';
+import { ICar } from '../car.entity';
+import { EditMode } from '../types/edit-mode.enum';
+import { Filters } from '../types/filters.type';
 
 @Injectable({
   providedIn: 'root'
