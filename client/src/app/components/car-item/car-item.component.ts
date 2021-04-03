@@ -27,4 +27,8 @@ export class CarItemComponent implements OnInit {
     )
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
+  }
+
 }

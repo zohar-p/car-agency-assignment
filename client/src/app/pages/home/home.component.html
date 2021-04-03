@@ -1,5 +1,5 @@
 <app-sort-form></app-sort-form>
 <app-filters-form></app-filters-form>
-<app-create-car-btn></app-create-car-btn>
+<app-create-car-btn *ngIf="isAdmin"></app-create-car-btn>
 <app-cars-list></app-cars-list>
 <app-load-more-btn></app-load-more-btn>

@@ -14,6 +14,7 @@ import { EditMode } from 'src/app/types/edit-mode.enum';
 export class CarEditComponent implements OnInit {
   subscriptions: Subscription[] = []
   form: FormGroup
+  initialValues: object
   typeOptions: string[] = []
   brandOptions: string[] = []
   modelOptions: string[] = []
@@ -38,6 +39,7 @@ export class CarEditComponent implements OnInit {
       year: ['', Validators.required],
       price: ['', Validators.required]
     })
+    this.initialValues = this.form.value
 
     this.subscriptions.push(
       this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value)),
@@ -49,7 +51,6 @@ export class CarEditComponent implements OnInit {
       })
     )
     this.form.get('model')!.disable()
-    
   }
 
   private _onBrandChange(value: string) {
@@ -88,6 +89,7 @@ export class CarEditComponent implements OnInit {
     cars[index] = updatedCar
     this._carsService.cars$.next(cars)
     this.closeButton.nativeElement.click()
+    this.form.reset(this.initialValues)
   }
 
   ngOnDestroy() {
