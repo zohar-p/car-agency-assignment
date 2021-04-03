@@ -6,9 +6,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <ul class="list-group">
-        <li *ngFor="let branch of branches" class="list-group-item">{{ branch.name }}</li>
-      </ul>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li *ngFor="let branch of branches" class="list-group-item d-flex align-items-center py-0 pr-0">
+            <div class="mr-auto">{{ branch.name }}</div>
+            <i (click)="onDelete(branch.id)" class="bi bi-x-circle text-danger btn icon-btn btn-lg px-2"></i>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

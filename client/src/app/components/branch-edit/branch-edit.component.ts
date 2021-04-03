@@ -19,4 +19,12 @@ export class BranchEditComponent implements OnInit {
       .subscribe(branches => this.branches = branches)
   }
 
+  onDelete(id: string) {
+    this._httpClient.delete(`http://localhost:3000/api/branches/${id}`)
+      .subscribe(() => {
+        const index = this.branches.findIndex(branch => branch.id === id)
+        this.branches.splice(index, 1)
+      })
+  }
+
 }
