@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ICar } from 'src/app/car.entity';
 import { CarsService } from 'src/app/cars.service';
 
 @Component({
@@ -18,6 +20,7 @@ export class CarEditComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
+    private _httpClient: HttpClient,
     private _carsService: CarsService,
   ) {
     this.typeOptions = this._carsService.types
@@ -37,6 +40,7 @@ export class CarEditComponent implements OnInit {
       this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
     )
     this.form.get('model')!.disable()
+    
   }
 
   private _onBrandChange(value: string) {
@@ -51,8 +55,12 @@ export class CarEditComponent implements OnInit {
   }
   
   onSubmit() {
-    console.log('** Ran **')
-    
+    this._httpClient.post<ICar>('http://localhost:3000/api/cars', this.form.value)
+      .subscribe(createdCar => this.onSuccessfulCreation(createdCar))
+  }
+
+  onSuccessfulCreation(car: ICar) {
+    this._carsService.addCars([car])
   }
 
   onCancel() {

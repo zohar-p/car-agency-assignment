@@ -45,8 +45,8 @@
           
         </div>
         <div class="modal-footer">
-          <button (click)="onCancel()" type="submit" class="btn btn-scondary">Cancel</button>
-          <button type="submit" class="btn btn-primary">Create</button>
+          <button (click)="onCancel()" type="button" class="btn btn-scondary">Cancel</button>
+          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Create</button>
         </div>
       </form>
     </div>

@@ -40,7 +40,7 @@ export class CarsService {
 
   onLoadMore() {
     const params = this._assembleFetchParams()
-    this.fetchCars(params).subscribe(fetchedCars => this._addCars(fetchedCars))
+    this.fetchCars(params).subscribe(fetchedCars => this.addCars(fetchedCars))
   }
 
   fetchCars(params: HttpParams): Observable<ICar[]> {
@@ -65,7 +65,7 @@ export class CarsService {
     return this.modelsByBrand[brand] || []
   }
 
-  private _addCars(cars: ICar[]) {
+  addCars(cars: ICar[]) {
     this.cars$.next([ ...this.cars$.getValue(), ...cars ])
   }
 
