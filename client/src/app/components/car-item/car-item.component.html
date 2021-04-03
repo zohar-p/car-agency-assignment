@@ -1,0 +1,24 @@
+<li
+    class="card"
+  >
+  <app-car-actions *ngIf="isAdmin" [carId]="car.id"></app-car-actions>
+  <div class="card-body highlight"  style="transform: rotate(0);">
+    <a [routerLink]="['/cars', car.id]" class="stretched-link"></a>
+    <h2 class="card-title h4">{{ car.brand }} {{ car.model }}</h2>
+    <p class="card-text">
+      type: {{ car.type }}
+    </p>
+    <p class="card-text">
+      year: {{ car.year }}
+    </p>
+    <p class="card-text">
+      price: {{ car.price | currencyConversion:currency | currency:currency  }}
+    </p>
+    <p class="card-text">
+      Branch: {{ car.branch.name }}
+    </p>
+    <p class="card-text">
+      Publish Date: {{ car.publishDate | date }}
+    </p>
+  </div>
+</li>
