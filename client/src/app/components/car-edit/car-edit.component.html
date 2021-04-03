@@ -36,11 +36,13 @@
           <div class="form-group">
             <label for="price">Price</label>
             <input type="number" min="1" formControlName="price" class="form-control" id="price">
+            <small *ngIf="form.controls.price.errors?.min" class="text-danger">Price must be greater than 0</small>
           </div>
 
           <div class="form-group">
             <label for="year">Year</label>
             <input type="number" min="1950" formControlName="year" class="form-control" id="year">
+            <small *ngIf="form.controls.year.errors?.min" class="text-danger">Year must be greater than 1950</small>
           </div>
 
           <div class="form-group">
