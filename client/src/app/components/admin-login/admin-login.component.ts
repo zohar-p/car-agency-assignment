@@ -1,7 +1,6 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -24,7 +23,7 @@ export class AdminLoginComponent implements OnInit {
   onSubmit() {
     this._userService.login(this.form.value.password)
     .subscribe({
-      next: response => {
+      next: () => {
         this.onLoginSuccess()
       },
       error: (err: HttpErrorResponse) => {

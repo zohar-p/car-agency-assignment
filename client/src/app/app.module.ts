@@ -18,6 +18,7 @@ import { LoadMoreBtnComponent } from './components/load-more-btn/load-more-btn.c
 import { FormatsFormComponent } from './components/formats-form/formats-form.component';
 import { CurrencyConversionPipe } from './pipes/currency-conversion/currency-conversion.pipe';
 import { CarActionsComponent } from './components/car-actions/car-actions.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CarActionsComponent } from './components/car-actions/car-actions.compon
     FormatsFormComponent,
     CurrencyConversionPipe,
     CarActionsComponent,
+    CarEditComponent,
   ],
   imports: [
     BrowserModule,

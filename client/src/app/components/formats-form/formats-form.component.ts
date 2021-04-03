@@ -22,8 +22,9 @@ export class FormatsFormComponent implements OnInit {
     this.form = this._formBuilder.group({
       currency: 'ILS'
     })
-    const formSubscription = this.form.valueChanges.subscribe(values => this.onValueChange(values.currency))
-    this.subscriptions.push(formSubscription)
+    this.subscriptions.push(
+      this.form.valueChanges.subscribe(values => this.onValueChange(values.currency))
+    )
   }
 
   onValueChange(currency: string) {

@@ -23,11 +23,12 @@ export class CarActionsComponent implements OnInit {
 
   onDelete() {
     console.log('Ran')
-    this._httpClient.delete(`http://localhost:3000/api/cars/${this.carId}`)
+    this._httpClient.delete(`http://localhost:3000/api/cars!/${this.carId}`)
       .subscribe({
         next: () => {
           this._carsService.removeCar(this.carId)
         },
+        // TODO BEFORE PR: handle error
         error: err => {console.log(err)}
       })
   }

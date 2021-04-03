@@ -9,6 +9,15 @@ import { Filters } from './types/filters.type';
   providedIn: 'root'
 })
 export class CarsService {
+  types = ['Sedan', 'Station Wagon', 'Hatchback', 'SUV']
+  brands = ['Chevrolet', 'Citroen', 'Fiat', 'Honda', 'Suzuki']
+  private modelsByBrand: Record<string, string[]> =  {
+    Chevrolet: ['Impala', 'Menlo', 'Spark', 'Traverse'],
+    Citroen: ['C3', 'C4', 'C5', 'Triomphe'],
+    Fiat: ['Panda', 'Tipo', '500', '500X Cross'],
+    Honda: ['Accord', 'Odyssey', 'Jazz', 'CR-V'],
+    Suzuki: ['Liana', 'Baleno', 'Splash', 'Ignis']
+  }
   cars$ = new BehaviorSubject<ICar[]>([])
   sortBy$ = new BehaviorSubject<'price' | 'year'>('price')
   filters$ = new BehaviorSubject<Filters>({})
@@ -50,6 +59,10 @@ export class CarsService {
     const index = cars.findIndex(car => car.id === id)
     cars.splice(index, 1)
     this.cars$.next(cars)
+  }
+
+  getModelsByBrand(brand: string) {
+    return this.modelsByBrand[brand] || []
   }
 
   private _addCars(cars: ICar[]) {

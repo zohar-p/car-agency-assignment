@@ -2,24 +2,24 @@
   <div class="form-row">
 
     <div class="form-group small-control col-auto">
-      <label for="type">Type: </label>
-      <select id="type" class="custom-select" formControlName="type">
+      <label for="filter-type">Type: </label>
+      <select id="filter-type" class="custom-select" formControlName="type">
         <option value="">All</option>
         <option *ngFor="let carType of typeOptions" [value]="carType">{{ carType }}</option>
       </select>
     </div>
 
     <div class="form-group small-control col-auto">
-      <label for="brand">Brand: </label>
-      <select id="brand" class="custom-select" formControlName="brand">
+      <label for="filter-brand">Brand: </label>
+      <select id="filter-brand" class="custom-select" formControlName="brand">
         <option value="">All</option>
         <option *ngFor="let brand of brandOptions" [value]="brand">{{ brand }}</option>
       </select>
     </div>
 
     <div class="form-group small-control col-auto">
-      <label for="model">Model: </label>
-      <select id="model" class="custom-select" formControlName="model">
+      <label for="filter-model">Model: </label>
+      <select id="filter-model" class="custom-select" formControlName="model">
         <option value="">All</option>
         <option *ngFor="let model of modelOptions" [value]="model">{{ model }}</option>
       </select>
@@ -27,21 +27,21 @@
 
     <div class="form-group large-control col-auto">
       <div>
-        <label for="price-range">Price Range:</label>
+        <label for="filter-price-range">Price Range:</label>
       </div>
-      <div id="price-range" class="custom-control-inline">
-        <input type="number" class="form-control" id="minPrice" placeholder="Min. price" formControlName="minPrice" min=0>
-        <input type="number" class="form-control" id="maxPrice" placeholder="Max. price" formControlName="maxPrice">
+      <div id="filter-price-range" class="custom-control-inline">
+        <input type="number" class="form-control" placeholder="Min. price" formControlName="minPrice" min=0>
+        <input type="number" class="form-control" placeholder="Max. price" formControlName="maxPrice">
       </div>
     </div>
 
     <div class="form-group large-control col-auto">
       <div>
-        <label for="year-range">Year Range:</label>
+        <label for="filter-year-range">Year Range:</label>
       </div>
-      <div id="year-range" class="custom-control-inline">
-        <input type="number" class="form-control" id="minYear" placeholder="Min. year" formControlName="minYear" min=1950>
-        <input type="number" class="form-control" id="maxYear" placeholder="Max. year" formControlName="maxYear">
+      <div id="filter-year-range" class="custom-control-inline">
+        <input type="number" class="form-control" placeholder="Min. year" formControlName="minYear" min=1950>
+        <input type="number" class="form-control" placeholder="Max. year" formControlName="maxYear">
       </div>
     </div>
   </div>

@@ -1,0 +1,54 @@
+<div id="car-edit" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button #close type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <label for="type">Type: </label>
+            <select id="type" class="custom-select" formControlName="type">
+              <option value="">Select Type</option>
+              <option *ngFor="let carType of typeOptions" [value]="carType">{{ carType }}</option>
+            </select>
+          </div>
+      
+          <div class="form-group">
+            <label for="brand">Brand: </label>
+            <select id="brand" class="custom-select" formControlName="brand">
+              <option value="">Select Brand</option>
+              <option *ngFor="let brand of brandOptions" [value]="brand">{{ brand }}</option>
+            </select>
+          </div>
+      
+          <div class="form-group">
+            <label for="model">Model: </label>
+            <select id="model" class="custom-select" formControlName="model">
+              <option value="">Select Model</option>
+              <option *ngFor="let model of modelOptions" [value]="model">{{ model }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" min="1" formControlName="price" class="form-control" id="price">
+          </div>
+
+          <div class="form-group">
+            <label for="year">Year</label>
+            <input type="number" min="1950" formControlName="year" class="form-control" id="year">
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button (click)="onCancel()" type="submit" class="btn btn-scondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

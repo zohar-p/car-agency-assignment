@@ -21,6 +21,6 @@ export const getCarsHandler = async (req: Request, res: Response) => {
     .find(query)
     .sort({ [sort]: 1 })
     .skip(+offset || 0)
-    .limit(3)
+    .limit(12)
   res.json(cars)
 }

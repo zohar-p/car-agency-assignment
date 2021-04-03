@@ -13,21 +13,17 @@ import { constants } from 'src/constants';
 export class FiltersFormComponent implements OnInit, OnDestroy {
   form: FormGroup
   subscriptions: Subscription[] = []
-  typeOptions = ['Sedan', 'Station Wagon', 'Hatchback', 'SUV']
-  brandOptions = ['Chevrolet', 'Citroen', 'Fiat', 'Honda', 'Suzuki']
+  typeOptions: string[] = []
+  brandOptions: string[] = []
   modelOptions: string[] = []
-  private modelsByBrand: Record<string, string[]> =  {
-    Chevrolet: ['Impala', 'Menlo', 'Spark', 'Traverse'],
-    Citroen: ['C3', 'C4', 'C5', 'Triomphe'],
-    Fiat: ['Panda', 'Tipo', '500', '500X Cross'],
-    Honda: ['Accord', 'Odyssey', 'Jazz', 'CR-V'],
-    Suzuki: ['Liana', 'Baleno', 'Splash', 'Ignis']
-  }
 
   constructor(
     private _formBuilder: FormBuilder,
     private _carsService: CarsService
-  ) { }
+  ) {
+    this.typeOptions = this._carsService.types
+    this.brandOptions = this._carsService.brands
+  }
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
@@ -40,14 +36,15 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
       maxYear: '',
     })
     // TODO BEFORE PR: filter price on blur
-    const formSubscription = this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
+    const brandSubscription = this.form.get('brand')!.valueChanges.subscribe(value => this._onBrandChange(value))
     this.form.get('model')!.disable()
-    this.form.valueChanges.subscribe(values => this._onValueChange(values))
-    this.subscriptions.push(formSubscription)
+    const formSubscription = this.form.valueChanges.subscribe(values => this._onValueChange(values))
+    this.subscriptions.push(brandSubscription, formSubscription)
   }
 
   private _onBrandChange(value: string) {
     const modelControl = this.form.get('model')!
+    this.modelOptions = this._carsService.getModelsByBrand(value)
     modelControl.setValue('', { emitEvent: false })
     if (!value) {
       modelControl.disable({ emitEvent: false })
@@ -57,7 +54,6 @@ export class FiltersFormComponent implements OnInit, OnDestroy {
   }
 
   private _onValueChange(values: Filters) {
-    this.modelOptions = this.modelsByBrand[values.brand!] || []
     this._carsService.filters$.next(values)
   }
 
