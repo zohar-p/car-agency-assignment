@@ -37,6 +37,7 @@ export class AdminLoginComponent implements OnInit {
     this.wrongPassword = false
     this._userService.isAdmin$.next(true)
     this.closeButton.nativeElement.click()
+    this.form.reset()
   }
 
   onLoginFailure(status: number) {
